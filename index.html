@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login EP</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- FADE KIRI -->
+  <div class="left-fade"></div>
+
+  <!-- LOGIN -->
+  <div class="login-container">
+
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+
+    <form id="loginForm">
+      
+      <label>Email</label>
+      <div class="input-group" id="emailGroup">
+        <i class="fa-regular fa-envelope"></i>
+        <input type="email" id="email" placeholder="Ex: roger@gmail.com">
+      </div>
+      <small class="error" id="emailError"></small>
+
+      <label>Password</label>
+      <div class="input-group" id="passwordGroup">
+        <i class="fa-solid fa-lock"></i>
+        <input type="password" id="password" placeholder="Masukkan password">
+        <i class="fa-regular fa-eye-slash toggle-password" id="togglePassword"></i>
+      </div>
+      <small class="error" id="passwordError"></small>
+
+      <div class="remember">
+        <input type="checkbox">
+        <span>Tetap masuk</span>
+      </div>
+
+      <button type="submit">Masuk</button>
+
+      <p class="forgot">Lupa kata sandi Anda?</p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("loginForm");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+
+    const emailGroup = document.getElementById("emailGroup");
+    const passwordGroup = document.getElementById("passwordGroup");
+
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let valid = true;
+
+      if (email.value.trim() === "") {
+        emailError.innerText = "Kolom ini tidak boleh kosong";
+        emailGroup.classList.add("error-input");
+        valid = false;
+      }
+
+      if (password.value.trim() === "") {
+        passwordError.innerText = "Kolom ini tidak boleh kosong";
+        passwordGroup.classList.add("error-input");
+        valid = false;
+      }
+
+      if (valid) {
+        alert("Login berhasil (dummy)");
+      }
+    });
+
+    email.addEventListener("input", () => {
+      emailError.innerText = "";
+      emailGroup.classList.remove("error-input");
+    });
+
+    password.addEventListener("input", () => {
+      passwordError.innerText = "";
+      passwordGroup.classList.remove("error-input");
+    });
+
+    const toggle = document.getElementById("togglePassword");
+
+    toggle.addEventListener("click", function () {
+      const type = password.type === "password" ? "text" : "password";
+      password.type = type;
+
+      this.classList.toggle("fa-eye");
+      this.classList.toggle("fa-eye-slash");
+    });
+  </script>
+
+</body>
+</html>
